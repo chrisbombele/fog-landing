@@ -38,7 +38,7 @@
 ## Santé
 
 - Gym / activité : **7h45–9h15**, après le départ du bus — confirmé par Chris (« je vais au gym quand ils sont partis »)
-  - Actuellement au calendrier : mardi à vendredi (le lundi bute sur la Revue de semaine CEO de 8h30)
+  - Au calendrier : lundi à vendredi
   - Fréquence cible : `À REMPLIR` jours par semaine
   - Trajet estimé : ~15 min aller-retour — `à valider`
 - Repas : collation 7h30, repas 12h00–13h00 sans écran, souper en famille
