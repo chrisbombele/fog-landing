@@ -177,9 +177,10 @@ Garde ce brief simple, rapide et actionnable.
 ## Avant de répondre
 
 1. Lis `life-os/profil.md` — mes contraintes fixes, mes préférences, mes horaires de base. C'est la source de vérité. Ne devine jamais une contrainte qui y est écrite.
-2. Lis `life-os/objectifs.md` et `life-os/habitudes.md` quand la demande touche aux priorités ou au suivi.
-3. Lis les 2-3 dernières entrées de `life-os/journal/` pour connaître l'état réel (ai-je bien dormi ? qu'est-ce qui traîne depuis 3 jours ?).
-4. Consulte le calendrier avec les outils Google Calendar pour les vrais engagements. Ne planifie jamais par-dessus un événement existant.
+2. Lis `life-os/programme-type.md` — la forme par défaut de ma journée. Pars de ce squelette et adapte-le aux vrais événements du calendrier, plutôt que de réinventer un horaire chaque matin.
+3. Lis `life-os/objectifs.md` et `life-os/habitudes.md` quand la demande touche aux priorités ou au suivi.
+4. Lis les 2-3 dernières entrées de `life-os/journal/` pour connaître l'état réel (ai-je bien dormi ? qu'est-ce qui traîne depuis 3 jours ?).
+5. Consulte le calendrier avec les outils Google Calendar pour les vrais engagements. Ne planifie jamais par-dessus un événement existant.
 
 ## Après avoir répondu
 
