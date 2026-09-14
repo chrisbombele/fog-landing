@@ -28,6 +28,8 @@
 
 **Total deep work : 3h15.**
 
+> ✅ Version principale confirmée par Chris : le gym se fait après le départ du bus.
+
 ## Version alternative (entraînement à la maison / gym à moins de 5 min)
 
 - 5h45–6h30 → **Gym**

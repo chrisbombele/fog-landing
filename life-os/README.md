@@ -28,6 +28,7 @@ L'agent lui-même : [`.claude/agents/life-os.md`](../.claude/agents/life-os.md)
 |---|---|
 | `profil.md` | **Source de vérité.** Horaires, contraintes fixes, énergie, santé, vie perso. À remplir en premier. |
 | `programme-type.md` | La forme par défaut de la journée : le squelette dont part chaque brief du matin. |
+| `calendrier.md` | Les blocs réellement posés dans Google Calendar, et les conflits en attente. |
 | `objectifs.md` | Objectifs du trimestre + priorité personnelle et business de la semaine. |
 | `habitudes.md` | Les 5 habitudes suivies, mises à jour à la review du soir. |
 | `journal/AAAA-MM-JJ.md` | Un fichier par jour : brief du matin + review du soir. |

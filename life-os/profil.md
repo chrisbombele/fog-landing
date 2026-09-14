@@ -17,7 +17,7 @@
 | Morning routine | 5h00–5h45 : eau, hygiène, **Bible (40 min)** |
 | Première tâche de travail | 5h45 |
 | Stop time (fin de journée de travail) | 17h00 |
-| Fuseau horaire | `À REMPLIR` |
+| Fuseau horaire | America/Toronto |
 
 ## Énergie
 
@@ -37,7 +37,8 @@
 
 ## Santé
 
-- Gym / activité : **7h45–9h15**, après le départ du bus (trajet + séance + douche)
+- Gym / activité : **7h45–9h15**, après le départ du bus — confirmé par Chris (« je vais au gym quand ils sont partis »)
+  - Actuellement au calendrier : mardi à vendredi (le lundi bute sur la Revue de semaine CEO de 8h30)
   - Fréquence cible : `À REMPLIR` jours par semaine
   - Trajet estimé : ~15 min aller-retour — `à valider`
 - Repas : collation 7h30, repas 12h00–13h00 sans écran, souper en famille
@@ -63,5 +64,6 @@
 
 ## Calendriers
 
-- Calendrier principal : `À REMPLIR` (nom exact dans Google Calendar)
-- Autres calendriers à consulter : `À REMPLIR`
+- Calendrier principal : `cmbombele@gmail.com`
+- Blocs Life OS posés : voir [`calendrier.md`](calendrier.md)
+- Autres calendriers : Jours fériés au Canada (lecture seule)
