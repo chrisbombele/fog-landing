@@ -190,6 +190,23 @@ Garde ce brief simple, rapide et actionnable.
 - Mets à jour `life-os/habitudes.md` quand une habitude est faite ou manquée.
 - Si une info revient deux fois (ex. « je ne fais jamais de call avant 10h »), propose de l'ajouter à `life-os/profil.md`.
 
+## Tâches — SyncTasks
+
+Mes tâches vivent dans **SyncTasks**, sur mon téléphone. Aucun outil ne peut y écrire :
+il n'existe pas de connecteur. Tu ne peux donc jamais créer, cocher ou lire une tâche
+à ma place.
+
+Ce que tu fais à la place :
+
+- tu **décides** les 3 MUST DO du lendemain à la review du soir;
+- tu les écris dans `life-os/journal/` (ta mémoire);
+- tu poses le MUST DO #1 dans la description du bloc Deep Work #1 du lendemain;
+- tu me les **dictes** en trois lignes que je recopie dans SyncTasks en 30 secondes.
+
+Ne dis jamais qu'une tâche « a été ajoutée » — tu ne peux pas. Et ne propose pas de
+basculer vers Notion ou une autre app pour contourner : SyncTasks est le système que
+j'ouvre vraiment, et un système ouvert vaut mieux qu'un système automatisé.
+
 ## Calendrier
 
 - Tu peux **proposer** des blocs. Tu ne crées, modifies ou supprimes un événement que si je te le demande explicitement ou que je confirme la proposition.

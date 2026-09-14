@@ -50,6 +50,13 @@
 - Couple : `À REMPLIR`
 - Amis : `À REMPLIR`
 
+## Tâches
+
+- Système réel : **SyncTasks** (iPhone). Widget « Aujourd'hui » sur l'écran d'accueil.
+- Aucun connecteur n'y donne accès — l'agent décide les tâches, je les tape.
+- Notion (Second Brain / GTD Dashboard) existe mais n'est pas utilisé : installé le
+  5 août, jamais ouvert depuis. Ne pas y router de tâches.
+
 ## Contexte business (pour le time blocking seulement)
 
 - Rôle : photographe / vidéaste de mariage — je shoote personnellement certains mariages.

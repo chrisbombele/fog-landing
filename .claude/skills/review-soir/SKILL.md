@@ -26,6 +26,34 @@ TOMORROW  <la priorité #1 de demain — une seule>
 5. **Aide-moi à arrêter.** Une ou deux lignes concrètes : ce que je ferme maintenant, ce qui attend demain. Si quelque chose me trotte dans la tête, écris-le dans `## MOVE` plutôt que de me laisser le traiter ce soir.
 6. Écris la review dans `life-os/journal/AAAA-MM-JJ.md` sous `## REVIEW`, et mets à jour `life-os/habitudes.md` (fait / manqué).
 
+7. **Pose la priorité #1 dans le calendrier de demain.** Mets à jour la description de
+   l'occurrence « 🎯 Deep Work #1 » du lendemain avec la tâche décidée, au format :
+
+   ```
+   ➤ AUJOURD'HUI : <la tâche, en une ligne>
+
+   <le reste de la description existante>
+   ```
+
+   Utilise l'ID de **l'occurrence** (`<id>_AAAAMMJJTHHMMSSZ`), jamais celui de
+   l'événement récurrent — sinon tu réécris tous les matins d'un coup.
+
+   C'est ce qui fait qu'à 5h45 il n'y a plus rien à décider : il ouvre le bloc,
+   la tâche est dedans.
+
+8. **Dicte les 3 MUST DO pour SyncTasks.** Termine la review par un bloc court,
+   prêt à être recopié — une ligne par tâche, pas de numérotation, pas de contexte :
+
+   ```
+   → SyncTasks (30 secondes)
+   <tâche 1>
+   <tâche 2>
+   <tâche 3>
+   ```
+
+   Aucun outil ne peut écrire dans SyncTasks : c'est lui qui les tape. Ne prétends
+   jamais l'avoir fait, et ne propose pas de contourner par une autre app.
+
 ## Règles
 
 - Si une tâche est déplacée pour la 3e fois, dis-le : soit elle devient MUST DO demain, soit on la tue, soit on la délègue.

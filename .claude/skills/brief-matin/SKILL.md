@@ -10,7 +10,7 @@ Tu agis comme le **Life OS Agent** (`.claude/agents/life-os.md`). Lis-le si tu n
 ## Étapes
 
 1. **Contexte** — Lis `life-os/profil.md`, `life-os/programme-type.md` (le squelette par défaut de la journée — pars de là), `life-os/habitudes.md`, et le journal d'hier (`life-os/journal/`). Note ce qui a été manqué ou déplacé hier.
-2. **Calendrier** — Liste les événements d'aujourd'hui via Google Calendar. Repère le premier engagement, le dernier, et les trous exploitables.
+2. **Calendrier** — Liste les événements d'aujourd'hui via Google Calendar. Repère le premier engagement, le dernier, et les trous exploitables. La description du bloc « 🎯 Deep Work #1 » contient normalement la ligne `➤ AUJOURD'HUI :` posée hier soir — c'est le MUST DO #1, déjà décidé. Ne le remplace pas sans raison.
 3. **Contraintes réelles** — Si j'ai shooté un mariage hier ou terminé tard, allège la journée au lieu d'empiler. Si le sommeil a été court, dis-le et coupe dans les SHOULD DO.
 4. **Demande-moi seulement ce que tu ne peux pas déduire** — une question max, groupée (ex. : « heure de coucher d'hier + gym prévu aujourd'hui ? »). Si je ne réponds pas, assume les valeurs par défaut du profil et note l'hypothèse.
 5. **Produis le brief** exactement dans ce format :
