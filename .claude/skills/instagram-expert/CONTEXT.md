@@ -68,7 +68,9 @@ sombre et cinématique). Direction tranchée pour FOG : **palette Amalfi, modèl
 nombre d'abonnés.
 
 **Plus gros problème actuellement**
-[À REMPLIR] côté ressenti. Diagnostic observé : voir ci-dessous.
+Confirmé par les données : **l'audience est hors marché.** Montréal + Laval =
+5,1 % des abonnés. Le compte a construit de la notoriété auprès de l'industrie
+et d'une audience internationale, pas de la demande à Montréal.
 
 ---
 
@@ -89,10 +91,17 @@ Engagement observé sur les publications visibles :
 - un post à ~81 mentions J'aime (≈ 0,8 % des abonnés)
 - commentaires majoritairement émojis et félicitations, peu de questions
 
-Écart à expliquer : une base de ~10,7k abonnés qui produit 81 à 321 J'aime.
-Deux causes possibles, à trancher avec les stats internes :
-soit l'audience n'est plus la bonne (abonnés non qualifiés, hors marché
-montréalais), soit le contenu ne sort plus auprès des abonnés existants.
+**Villes des abonnés (Insights, confirmé) : Montréal 3,8 % · Laval 1,3 %.**
+Soit ~5,1 % dans le Grand Montréal — environ 550 personnes sur ~10 700.
+
+Diagnostic tranché : **l'audience n'est pas le marché.** ~95 % des abonnés ne
+peuvent pas engager FOG. L'engagement faible n'est pas le problème ; le problème
+est que la totalité de l'engagement vient de gens hors marché.
+
+Conséquence stratégique : les 10,7k abonnés sont désormais traités comme une
+**preuve sociale au moment de la conversion**, pas comme un canal de distribution.
+Toute la portée utile doit venir de non-abonnés montréalais.
+Voir `strategie/plan-30-jours.md`.
 
 ## Données manquantes qui bloquent le diagnostic fin
 
@@ -101,6 +110,8 @@ montréalais), soit le contenu ne sort plus auprès des abonnés existants.
 - part de vues issues de non-abonnés
 - partages et sauvegardes par publication
 - visites de profil et clics sur le lien
-- villes principales des abonnés (Montréal en fait-il vraiment partie ?)
+- villes 3 à 10 des abonnés — audience concentrée sur un pays (potentiellement
+  exploitable : diaspora montréalaise, mariages destination) ou éparpillée sur
+  200 pays (poids mort) ? Change la suite du plan.
 - nombre de DMs entrants par semaine
 - nombre de contrats signés venus d'Instagram sur 90 jours
