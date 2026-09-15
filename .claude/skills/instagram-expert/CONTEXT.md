@@ -1,66 +1,94 @@
-# Contexte de la marque
+# Contexte de la marque — FOG Production
 
-Ce fichier est la source de vérité de l'agent Instagram. Tant qu'un champ est
-marqué `[À REMPLIR]`, l'agent doit le demander plutôt que de deviner.
+Source de vérité de l'agent Instagram. Les champs `[À CONFIRMER]` sont des
+hypothèses de travail à valider ; les champs `[À REMPLIR]` bloquent encore une
+partie du diagnostic.
 
-Remplis-le une fois, mets-le à jour quand l'offre ou le positionnement bouge.
+Dernière mise à jour : 2026-09-15 (données lues sur le profil @fogproduction)
 
 ---
 
 **Entreprise**
-[À REMPLIR]
+FOG Production — studio photo et vidéo de mariage. Duo mari & femme.
+Site : www.fogprod.co
 
 **Niche**
-[À REMPLIR]
+Mariage — photographie et vidéographie. Montréal, avec déplacements internationaux.
 
 **Client idéal**
-[À REMPLIR]
-<!-- Va au-delà de "femmes 25-40". Qui exactement, dans quel moment de vie,
-     avec quel problème, et qu'est-ce qui déclenche l'achat aujourd'hui ? -->
+[À CONFIRMER] Couples qui se marient à Montréal ou dans sa région, mariage de
+standing, budget prestataire image significatif. Le décideur du contact initial
+est très majoritairement la future mariée ; le budget se décide à deux.
+À préciser : tranche d'âge, budget mariage total, mariage local vs destination,
+part de la clientèle issue de communautés spécifiques.
 
 **Positionnement**
-[À REMPLIR]
-<!-- La phrase qui explique pourquoi on choisit vous plutôt que le concurrent
-     d'à côté. Si elle pourrait être écrite par trois autres marques de la
-     niche, ce n'est pas un positionnement. -->
+Actuel, tel qu'énoncé dans la bio : « Photographe & Vidéaste · Mari & Femme,
+Créateurs de Love · Basés à Montréal · Voyage partout dans le monde ».
+
+Problème : décrit un métier et un lieu, pas une différence. « Créateurs de Love »
+est le seul élément distinctif tenté, et il est vague.
+
+Actif non exploité : **un couple marié qui filme des couples qui se marient.**
+C'est la seule chose de ce profil qu'un concurrent montréalais ne peut pas copier.
 
 **Offre principale**
-[À REMPLIR]
+Prestation photo + vidéo de mariage. [À CONFIRMER] : formules, part du combo
+photo+vidéo vs photo seule, existence d'un package destination.
 
 **Prix moyen**
-[À REMPLIR]
-<!-- Détermine le volume de leads nécessaire et donc tout l'équilibre
-     attirer / convertir. 50 € et 5 000 € ne demandent pas la même stratégie. -->
+[À REMPLIR] — détermine le nombre de contrats nécessaires, donc tout l'équilibre
+attirer / convertir. Un panier à 2 500 $ et un panier à 8 000 $ ne demandent pas
+la même stratégie.
 
 **Ville / marché**
-[À REMPLIR]
-<!-- Local ou national change complètement le ciblage et les formats. -->
+Montréal (marché principal) + destination international.
 
 **Style visuel souhaité**
-[À REMPLIR]
+[À CONFIRMER] Actuellement : cinématique, chaleureux, tons chauds, lumière
+naturelle. Cohérent avec le brief de marque (jeune, premium, moderne, humain).
 
 **Comptes Instagram que j'aime**
 [À REMPLIR]
-<!-- 3 à 5 comptes, avec pour chacun une ligne : ce qui te plaît précisément. -->
 
 **Objectif Instagram sur les 90 prochains jours**
-[À REMPLIR]
-<!-- Un objectif chiffré et vérifiable. "Plus de visibilité" n'est pas un objectif. -->
+[À REMPLIR] — doit être un nombre de contrats signés issus d'Instagram, pas un
+nombre d'abonnés.
 
 **Plus gros problème actuellement**
-[À REMPLIR]
+[À REMPLIR] côté ressenti. Diagnostic observé : voir ci-dessous.
 
 ---
 
 ## État actuel du compte
 
-À remplir si le compte existe déjà — sinon laisser vide, l'agent s'adaptera.
+Relevé sur le profil au 2026-09-15 (lecture écran, à recouper avec les stats internes).
 
-- Handle : [À REMPLIR]
-- Abonnés : [À REMPLIR]
-- Fréquence de publication actuelle : [À REMPLIR]
-- Reels des 30 derniers jours (vues / rétention / partages / visites de profil) : [À REMPLIR]
-- Meilleur post à ce jour et pourquoi, selon toi : [À REMPLIR]
-- Pire post à ce jour et pourquoi, selon toi : [À REMPLIR]
-- DMs entrants par semaine : [À REMPLIR]
-- Clients venus d'Instagram sur les 90 derniers jours : [À REMPLIR]
+- Handle : @fogproduction (compte vérifié)
+- Nom affiché : « FOG Production · Mariage Montréal »
+- Publications : 66
+- Abonnés : ~10 700
+- Abonnements : 708
+- Lien : www.fogprod.co (destination unique)
+- Stories à la une : OUR WORK · REVIEWS · ABOUT · FAQ · HOW IT WORKS · Nouveau (6)
+
+Engagement observé sur les publications visibles :
+- un Reel à ~321 mentions J'aime (≈ 3 % des abonnés)
+- un post à ~81 mentions J'aime (≈ 0,8 % des abonnés)
+- commentaires majoritairement émojis et félicitations, peu de questions
+
+Écart à expliquer : une base de ~10,7k abonnés qui produit 81 à 321 J'aime.
+Deux causes possibles, à trancher avec les stats internes :
+soit l'audience n'est plus la bonne (abonnés non qualifiés, hors marché
+montréalais), soit le contenu ne sort plus auprès des abonnés existants.
+
+## Données manquantes qui bloquent le diagnostic fin
+
+À récupérer dans Instagram Insights, 30 derniers jours :
+- rétention 3 s et watch time moyen des 5 derniers Reels
+- part de vues issues de non-abonnés
+- partages et sauvegardes par publication
+- visites de profil et clics sur le lien
+- villes principales des abonnés (Montréal en fait-il vraiment partie ?)
+- nombre de DMs entrants par semaine
+- nombre de contrats signés venus d'Instagram sur 90 jours
