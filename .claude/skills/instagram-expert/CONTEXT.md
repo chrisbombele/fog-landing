@@ -49,7 +49,19 @@ Montréal (marché principal) + destination international.
 naturelle. Cohérent avec le brief de marque (jeune, premium, moderne, humain).
 
 **Comptes Instagram que j'aime**
-[À REMPLIR]
+
+- **@shotsby.smith** (Smith Rice, Tampa — 182 pub. / 43,1k abonnés) — dirige une
+  boîte de production. Bio de 3 lignes factuelles, une seule story à la une,
+  quasi que des Reels, canal de diffusion. Vend le métier et la vie, pas le
+  portfolio. **C'est le modèle à suivre** (forme), en inversant la cible :
+  s'adresser aux futures mariées, pas aux vidéastes.
+- **@vi.amalfi** (23 pub. / 40,7k abonnés) — marque personnelle lifestyle. On
+  prend la sélectivité, la bio à un seul CTA, les couvertures typographiques
+  `/Life/ /Work/`, la discipline de palette et la présence du visage. **On ne
+  prend pas le modèle** (guru / réussite) : voir `strategie/pourquoi-pas-amalfi.md`.
+
+Attention : les deux ont des palettes opposées (Amalfi lumineux et chaud, Smith
+sombre et cinématique). Direction tranchée pour FOG : **palette Amalfi, modèle Smith.**
 
 **Objectif Instagram sur les 90 prochains jours**
 [À REMPLIR] — doit être un nombre de contrats signés issus d'Instagram, pas un
