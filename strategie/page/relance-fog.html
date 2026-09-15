@@ -1,0 +1,787 @@
+<title>Relance Instagram FOG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  /* ── Tokens : sombre par défaut (la console se lit au petit matin) ───── */
+  :root{
+    --ground:#15120E;
+    --surface:#1E1A14;
+    --surface-2:#282219;
+    --line:#37301F;
+    --line-soft:#272117;
+    --ink:#F0E7DC;
+    --ink-dim:#A29685;
+    --ink-faint:#6E6355;
+    --brass:#C8A053;
+    --brass-soft:#3A2F1A;
+    --done:#7E9B6E;
+    --alert:#C4664A;
+    --alert-soft:#33201A;
+
+    --f-display:"Instrument Serif",Georgia,"Times New Roman",serif;
+    --f-ui:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --f-mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  }
+  @media (prefers-color-scheme:light){
+    :root:not([data-theme="dark"]){
+      --ground:#FAF6F0;
+      --surface:#FFFFFF;
+      --surface-2:#F2ECE2;
+      --line:#DFD5C5;
+      --line-soft:#EDE5D9;
+      --ink:#221D16;
+      --ink-dim:#6A6053;
+      --ink-faint:#968B7B;
+      --brass:#8A6A22;
+      --brass-soft:#F0E4C8;
+      --done:#4C6B3E;
+      --alert:#9E4529;
+      --alert-soft:#F7E3DC;
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#FAF6F0;
+    --surface:#FFFFFF;
+    --surface-2:#F2ECE2;
+    --line:#DFD5C5;
+    --line-soft:#EDE5D9;
+    --ink:#221D16;
+    --ink-dim:#6A6053;
+    --ink-faint:#968B7B;
+    --brass:#8A6A22;
+    --brass-soft:#F0E4C8;
+    --done:#4C6B3E;
+    --alert:#9E4529;
+    --alert-soft:#F7E3DC;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--ground);color:var(--ink);
+    font-family:var(--f-ui);font-size:15px;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding-inline:20px;padding-block:0 72px}
+
+  /* ── Barre de progression collante ──────────────────────────────────── */
+  .bar{
+    position:sticky;top:env(safe-area-inset-top,0px);z-index:20;
+    background:color-mix(in srgb,var(--ground) 92%,transparent);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .bar-in{
+    max-width:720px;margin:0 auto;padding:11px 20px;
+    display:flex;align-items:center;gap:12px;
+  }
+  .bar-mark{
+    font-family:var(--f-ui);font-weight:600;font-size:12px;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--ink);
+    white-space:nowrap;
+  }
+  .bar-track{flex:1;height:3px;background:var(--line);border-radius:2px;overflow:hidden}
+  .bar-fill{height:100%;width:0;background:var(--brass);transition:width .35s ease}
+  .bar-count{
+    font-family:var(--f-mono);font-size:12px;color:var(--ink-dim);
+    font-variant-numeric:tabular-nums;white-space:nowrap;
+  }
+
+  /* ── Ouverture ──────────────────────────────────────────────────────── */
+  header.top{padding-block:40px 30px}
+  .eyebrow{
+    font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--brass);font-weight:600;margin:0 0 14px;
+  }
+  h1{
+    font-family:var(--f-display);font-weight:400;
+    font-size:clamp(34px,8.5vw,52px);line-height:1.04;margin:0 0 16px;
+    text-wrap:balance;letter-spacing:-.01em;
+  }
+  .lede{margin:0;color:var(--ink-dim);font-size:16px;max-width:52ch}
+  .lede strong{color:var(--ink);font-weight:500}
+
+  /* ── Trois chiffres : c'est le diagnostic, donc ils portent la page ─── */
+  .figs{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
+        border:1px solid var(--line);border-radius:3px;overflow:hidden;margin:28px 0 8px}
+  .fig{background:var(--surface);padding:16px 14px;min-width:0}
+  .fig-n{
+    font-family:var(--f-display);font-size:clamp(23px,6vw,32px);line-height:1;
+    display:block;margin-bottom:7px;font-variant-numeric:tabular-nums;
+  }
+  .fig-n.warm{color:var(--brass)}
+  .fig-n.bad{color:var(--alert)}
+  .fig-l{font-size:11px;color:var(--ink-dim);line-height:1.35;display:block}
+  @media (max-width:560px){
+    .figs{grid-template-columns:1fr}
+    .fig{display:flex;align-items:baseline;gap:12px;padding:13px 14px}
+    .fig-n{margin:0;flex:0 0 auto;min-width:88px}
+  }
+
+  .verdict{
+    border-left:2px solid var(--alert);background:var(--alert-soft);
+    padding:14px 16px;margin:20px 0 0;border-radius:0 3px 3px 0;
+  }
+  .verdict p{margin:0;font-size:14.5px}
+  .verdict p + p{margin-top:9px}
+
+  /* ── Sections ───────────────────────────────────────────────────────── */
+  section{padding-block:38px;border-top:1px solid var(--line-soft)}
+  .s-head{display:flex;align-items:baseline;gap:11px;margin-bottom:6px}
+  .s-num{
+    font-family:var(--f-mono);font-size:11px;color:var(--brass);
+    font-weight:500;letter-spacing:.06em;flex:0 0 auto;
+  }
+  h2{
+    font-family:var(--f-display);font-weight:400;font-size:clamp(24px,5.5vw,31px);
+    line-height:1.12;margin:0;text-wrap:balance;letter-spacing:-.005em;
+  }
+  .s-sub{margin:0 0 22px 28px;color:var(--ink-dim);font-size:14px;max-width:50ch}
+
+  /* ── Déjà fait ──────────────────────────────────────────────────────── */
+  .done-strip{
+    display:flex;flex-wrap:wrap;gap:7px;margin:0 0 22px 28px;
+  }
+  .done-chip{
+    font-size:11.5px;color:var(--done);border:1px solid var(--done);
+    border-radius:2px;padding:3px 8px;opacity:.85;
+  }
+  .done-chip::before{content:"✓ ";font-weight:600}
+
+  /* ── Checklist ──────────────────────────────────────────────────────── */
+  .list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1px;
+        background:var(--line);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+  .item{background:var(--surface);display:flex;gap:13px;padding:14px 15px;align-items:flex-start}
+  .item input{
+    appearance:none;flex:0 0 auto;width:19px;height:19px;margin:1px 0 0;
+    border:1.5px solid var(--ink-faint);border-radius:2px;background:transparent;
+    cursor:pointer;position:relative;transition:border-color .15s,background .15s;
+  }
+  .item input:checked{background:var(--done);border-color:var(--done)}
+  .item input:checked::after{
+    content:"";position:absolute;left:5.5px;top:1.5px;width:5px;height:10px;
+    border:solid var(--ground);border-width:0 2px 2px 0;transform:rotate(42deg);
+  }
+  .item input:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+  .item label{cursor:pointer;flex:1;min-width:0;overflow-wrap:anywhere}
+  .item-t{display:block;font-size:14.5px;font-weight:500;line-height:1.4}
+  .item-d{display:block;font-size:12.5px;color:var(--ink-dim);margin-top:3px}
+  .item input:checked ~ label .item-t{text-decoration:line-through;color:var(--ink-faint);font-weight:400}
+  .item input:checked ~ label .item-d{color:var(--ink-faint);opacity:.6}
+  .item-tag{
+    font-family:var(--f-mono);font-size:10px;color:var(--brass);
+    border:1px solid var(--brass-soft);background:var(--brass-soft);
+    padding:1px 5px;border-radius:2px;margin-left:7px;white-space:nowrap;
+    vertical-align:1px;
+  }
+
+  /* ── Blocs à copier ─────────────────────────────────────────────────── */
+  .copy{border:1px solid var(--line);border-radius:3px;background:var(--surface);overflow:hidden;margin-bottom:14px}
+  .copy-top{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:9px 13px;border-bottom:1px solid var(--line-soft);background:var(--surface-2);
+  }
+  .copy-name{font-size:12px;font-weight:600;letter-spacing:.03em;min-width:0;
+              overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .copy-btn{
+    flex:0 0 auto;font-family:var(--f-ui);font-size:11px;font-weight:600;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--ground);
+    background:var(--brass);border:0;border-radius:2px;padding:5px 11px;cursor:pointer;
+    transition:opacity .15s;
+  }
+  .copy-btn:hover{opacity:.85}
+  .copy-btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+  .copy-btn.ok{background:var(--done)}
+  .copy-body{
+    font-family:var(--f-mono);font-size:12.5px;line-height:1.72;
+    padding:13px;margin:0;white-space:pre-wrap;word-break:break-word;color:var(--ink);
+  }
+  .copy-note{font-size:12.5px;color:var(--ink-dim);margin:-6px 0 18px;padding-left:2px}
+
+  /* ── Cibles ─────────────────────────────────────────────────────────── */
+  .tier{margin-bottom:22px}
+  .tier-h{
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;
+    color:var(--brass);margin:0 0 4px;
+  }
+  .tier-n{font-size:13px;color:var(--ink-dim);margin:0 0 11px;max-width:48ch}
+  .targ{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1px;
+        background:var(--line);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+  .targ li{background:var(--surface);display:flex;gap:12px;padding:11px 14px;align-items:center}
+  .targ input{
+    appearance:none;flex:0 0 auto;width:17px;height:17px;border:1.5px solid var(--ink-faint);
+    border-radius:2px;cursor:pointer;position:relative;background:transparent;margin:0;
+  }
+  .targ input:checked{background:var(--done);border-color:var(--done)}
+  .targ input:checked::after{
+    content:"";position:absolute;left:4.8px;top:1.2px;width:4.5px;height:9px;
+    border:solid var(--ground);border-width:0 2px 2px 0;transform:rotate(42deg);
+  }
+  .targ input:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+  .targ label{flex:1;min-width:0;cursor:pointer;font-size:14px}
+  .targ input:checked ~ label{color:var(--ink-faint);text-decoration:line-through}
+  .handle{font-family:var(--f-mono);font-size:12.5px;color:var(--brass)}
+  .targ input:checked ~ label .handle{color:var(--ink-faint)}
+  .flag{
+    font-size:10px;color:var(--ink-faint);border:1px solid var(--line);
+    padding:1px 5px;border-radius:2px;flex:0 0 auto;white-space:nowrap;
+  }
+
+  /* ── Reels ──────────────────────────────────────────────────────────── */
+  details.reel{border:1px solid var(--line);border-radius:3px;background:var(--surface);
+               margin-bottom:11px;overflow:hidden}
+  details.reel > summary{
+    padding:14px 15px;cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:11px;
+  }
+  details.reel > summary::-webkit-details-marker{display:none}
+  details.reel > summary::after{
+    content:"+";margin-left:auto;color:var(--brass);font-size:17px;line-height:1;flex:0 0 auto;
+  }
+  details.reel[open] > summary::after{content:"−"}
+  details.reel > summary:focus-visible{outline:2px solid var(--brass);outline-offset:-2px}
+  .reel-n{font-family:var(--f-mono);font-size:11px;color:var(--brass);flex:0 0 auto}
+  .reel-t{font-weight:600;font-size:14.5px;flex:1;min-width:0}
+  .reel-body{padding:0 15px 16px;border-top:1px solid var(--line-soft);margin-top:2px}
+  .meta{display:flex;flex-wrap:wrap;gap:6px;margin:13px 0 15px}
+  .meta span{font-size:11px;color:var(--ink-dim);border:1px solid var(--line);
+             padding:2px 7px;border-radius:2px}
+  .meta span b{color:var(--ink);font-weight:600}
+  .hook{
+    font-family:var(--f-display);font-size:19px;line-height:1.3;font-style:italic;
+    border-left:2px solid var(--brass);padding:2px 0 2px 14px;margin:0 0 17px;color:var(--ink);
+  }
+  .shots{list-style:none;margin:0 0 16px;padding:0;display:flex;flex-direction:column;gap:13px}
+  .shot{display:grid;grid-template-columns:52px minmax(0,1fr);gap:12px;align-items:start}
+  .shot-t{font-family:var(--f-mono);font-size:11.5px;color:var(--brass);padding-top:2px;
+          font-variant-numeric:tabular-nums}
+  .shot-img{font-size:12.5px;color:var(--ink-dim);display:block;margin-bottom:4px}
+  .shot-say{font-size:14px;display:block;line-height:1.5}
+  .shot-say::before{content:"« ";color:var(--ink-faint)}
+  .shot-say::after{content:" »";color:var(--ink-faint)}
+  .shot-scr{
+    display:inline-block;margin-top:5px;font-family:var(--f-mono);font-size:10.5px;
+    color:var(--ink-dim);border:1px dashed var(--line);padding:1px 6px;border-radius:2px;
+  }
+  .warn{border-left:2px solid var(--brass);background:var(--brass-soft);padding:11px 13px;
+        border-radius:0 3px 3px 0;font-size:13px;margin:0 0 15px}
+  .warn b{font-weight:600}
+  .measure{font-size:13px;color:var(--ink-dim);margin:0}
+  .measure b{color:var(--ink);font-weight:600}
+
+  /* ── Métriques finales ──────────────────────────────────────────────── */
+  .kpi{display:flex;flex-direction:column;gap:1px;background:var(--line);
+       border:1px solid var(--line);border-radius:3px;overflow:hidden}
+  .kpi-row{background:var(--surface);display:flex;justify-content:space-between;
+           align-items:baseline;gap:14px;padding:12px 14px;flex-wrap:wrap}
+  .kpi-k{font-size:14px;flex:1;min-width:150px}
+  .kpi-v{font-family:var(--f-mono);font-size:13px;color:var(--brass);
+         font-variant-numeric:tabular-nums;text-align:right}
+  .kpi-row.hero{background:var(--surface-2)}
+  .kpi-row.hero .kpi-k{font-weight:600}
+  .stop{margin:16px 0 0;font-size:13px;color:var(--ink-dim)}
+  .stop b{color:var(--ink)}
+
+  footer{border-top:1px solid var(--line-soft);padding-block:26px 0;margin-top:38px;
+         font-size:12.5px;color:var(--ink-faint)}
+  footer p{margin:0 0 6px}
+
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important;animation:none!important}
+  }
+</style>
+
+<div class="bar">
+  <div class="bar-in">
+    <span class="bar-mark">FOG</span>
+    <div class="bar-track"><div class="bar-fill" id="fill"></div></div>
+    <span class="bar-count" id="count">0 / 10</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <header class="top">
+    <p class="eyebrow">Plan 30 jours · Septembre 2026</p>
+    <h1>Ta portée n'est pas le problème.</h1>
+    <p class="lede">
+      606 800 vues en 30 jours, et <strong>5,1 % de ton audience est à Montréal.</strong>
+      Tu n'as pas besoin de plus de monde. Tu as besoin de rediriger ceux que tu as déjà.
+    </p>
+
+    <div class="figs">
+      <div class="fig">
+        <span class="fig-n warm">606,8 K</span>
+        <span class="fig-l">vues sur 30 jours</span>
+      </div>
+      <div class="fig">
+        <span class="fig-n bad">5,1 %</span>
+        <span class="fig-l">de l'audience dans le Grand Montréal</span>
+      </div>
+      <div class="fig">
+        <span class="fig-n">~550</span>
+        <span class="fig-l">personnes sur 10 700 qui peuvent t'engager</span>
+      </div>
+    </div>
+
+    <div class="verdict">
+      <p><strong>« POV : tu maries ta meilleure amie » a fait 52 K.</strong> C'est ton meilleur
+      post, et c'est exactement le problème : ce hook parle à n'importe qui, n'importe où,
+      qui a une meilleure amie.</p>
+      <p>Tes 10 700 abonnés ne sont plus un canal de distribution. Ce sont une preuve
+      sociale au moment où quelqu'un décide de t'écrire — et c'est déjà beaucoup.</p>
+    </div>
+  </header>
+
+  <!-- 1 ─────────────────────────────────────────────────────────────── -->
+  <section>
+    <div class="s-head"><span class="s-num">01</span><h2>À faire maintenant</h2></div>
+    <p class="s-sub">Dix actions. Dans l'ordre. Rien d'autre tant que ce n'est pas fini.</p>
+    <div class="done-strip">
+      <span class="done-chip">Bio réécrite</span>
+      <span class="done-chip">Couvertures posées</span>
+      <span class="done-chip">Épinglés 1 et 2</span>
+    </div>
+
+    <ul class="list" id="checklist">
+      <li class="item">
+        <input type="checkbox" id="t1">
+        <label for="t1">
+          <span class="item-t">Photo de profil → vos deux visages<span class="item-tag">5 sec</span></span>
+          <span class="item-d">Ta bio dit « un couple marié ». Ta photo de profil est un logo. Prends le portrait N&amp;B de l'épinglé n°1, recadré serré.</span>
+        </label>
+      </li>
+      <li class="item">
+        <input type="checkbox" id="t2">
+        <label for="t2">
+          <span class="item-t">Remplacer l'épinglé n°3</span>
+          <span class="item-d">Le selfie plage fait 3 458 vues contre 23 K et 52 K. Mets un avis client à la place : identité → preuve → conversion.</span>
+        </label>
+      </li>
+      <li class="item">
+        <input type="checkbox" id="t3">
+        <label for="t3">
+          <span class="item-t">Le lien pointe vers un formulaire « date du mariage »</span>
+          <span class="item-d">Ta bio promet « vérifie si ta date est libre ». La page doit être ça, pas l'accueil. Un seul champ obligatoire. Un Tally suffit en attendant.</span>
+        </label>
+      </li>
+      <li class="item">
+        <input type="checkbox" id="t4">
+        <label for="t4">
+          <span class="item-t">Lister les salles filmées sur 24 mois</span>
+          <span class="item-d">C'est ta meilleure liste de contacts, et personne d'autre ne l'a. Ouvre les disques durs.</span>
+        </label>
+      </li>
+      <li class="item">
+        <input type="checkbox" id="t5">
+        <label for="t5">
+          <span class="item-t">3 messages aux salles déjà filmées<span class="item-tag">§03</span></span>
+          <span class="item-d">Les plus faciles : la relation existe, les images existent.</span>
+        </label>
+      </li>
+      <li class="item">
+        <input type="checkbox" id="t6">
+        <label for="t6">
+          <span class="item-t">2 messages aux boutiques de robes<span class="item-tag">§03</span></span>
+          <span class="item-d">La robe s'achète 12 à 18 mois avant. Le photographe n'est pas encore choisi.</span>
+        </label>
+      </li>
+      <li class="item">
+        <input type="checkbox" id="t7">
+        <label for="t7">
+          <span class="item-t">1 message à Foudamour<span class="item-tag">§03</span></span>
+          <span class="item-d">Un café, pas une collab. Une planner recommande directement.</span>
+        </label>
+      </li>
+      <li class="item">
+        <input type="checkbox" id="t8">
+        <label for="t8">
+          <span class="item-t">Tourner le Reel « On est mariés »<span class="item-tag">§05</span></span>
+          <span class="item-d">Il devient ton épinglé n°1.</span>
+        </label>
+      </li>
+      <li class="item">
+        <input type="checkbox" id="t9">
+        <label for="t9">
+          <span class="item-t">Publier, en taguant le lieu réel</span>
+          <span class="item-d">Le nom du domaine, jamais « Montréal ». Identifier les mariés et les prestataires.</span>
+        </label>
+      </li>
+      <li class="item">
+        <input type="checkbox" id="t10">
+        <label for="t10">
+          <span class="item-t">Écrire l'hypothèse AVANT de publier</span>
+          <span class="item-d">Une hypothèse écrite après coup est une justification, pas un apprentissage.</span>
+        </label>
+      </li>
+    </ul>
+  </section>
+
+  <!-- 2 ─────────────────────────────────────────────────────────────── -->
+  <section>
+    <div class="s-head"><span class="s-num">02</span><h2>Le profil</h2></div>
+    <p class="s-sub">La bio est en place. Ne touche plus au champ Nom — c'est lui qui te fait sortir dans la recherche.</p>
+
+    <div class="copy">
+      <div class="copy-top">
+        <span class="copy-name">Bio — en place</span>
+        <button class="copy-btn" data-copy="bio">Copier</button>
+      </div>
+      <pre class="copy-body" id="bio">Photo &amp; vidéo de mariage · Montréal
+Un couple marié qui filme des couples qui se marient.
+↓ Vérifie si ta date est libre</pre>
+    </div>
+    <p class="copy-note">Ligne 2 : la seule phrase de ce profil qu'aucun concurrent montréalais ne peut écrire.</p>
+
+    <div class="copy">
+      <div class="copy-top">
+        <span class="copy-name">Champ Nom — ne pas modifier</span>
+        <button class="copy-btn" data-copy="nom">Copier</button>
+      </div>
+      <pre class="copy-body" id="nom">FOG Production · Mariage Montréal</pre>
+    </div>
+
+    <p class="copy-note" style="margin-top:14px">
+      <b>Stories à la une :</b> <span class="handle">/Eux/</span> avis clients ·
+      <span class="handle">/Nous/</span> vous deux ·
+      <span class="handle">/Infos/</span> déroulé, délais, tarifs de départ. Tout en français.
+    </p>
+  </section>
+
+  <!-- 3 ─────────────────────────────────────────────────────────────── -->
+  <section>
+    <div class="s-head"><span class="s-num">03</span><h2>Les messages</h2></div>
+    <p class="s-sub">On donne avant de demander, et on finit toujours par une question à laquelle on répond oui ou non. Six cette semaine, pas vingt.</p>
+
+    <div class="copy">
+      <div class="copy-top">
+        <span class="copy-name">1 · Salle déjà filmée</span>
+        <button class="copy-btn" data-copy="m1">Copier</button>
+      </div>
+      <pre class="copy-body" id="m1">Salut [Prénom] — on a filmé un mariage chez vous le [date].
+On vous a monté 20 secondes de la salle, pour vous, gratuitement. Rien à faire de votre côté.
+Si ça vous plaît on peut le publier en collab, ça apparaît sur les deux comptes.
+Je vous l'envoie ?</pre>
+    </div>
+    <p class="copy-note">Le meilleur taux de réponse des six. Commence par ceux-là.</p>
+
+    <div class="copy">
+      <div class="copy-top">
+        <span class="copy-name">2 · Salle jamais filmée</span>
+        <button class="copy-btn" data-copy="m2">Copier</button>
+      </div>
+      <pre class="copy-body" id="m2">Salut [Prénom] — on est [prénom] et [prénom], photo &amp; vidéo de mariage à Montréal.
+On n'a jamais tourné chez vous et on aimerait beaucoup.
+Proposition simple : on passe 30 min un matin de semaine, on vous monte un Reel de la salle, gratuit, vous en faites ce que vous voulez.
+Si le résultat vous plaît, on le publie en collab. Ça vous dit ?</pre>
+    </div>
+
+    <div class="copy">
+      <div class="copy-top">
+        <span class="copy-name">3 · Boutique de robes</span>
+        <button class="copy-btn" data-copy="m3">Copier</button>
+      </div>
+      <pre class="copy-body" id="m3">Salut [Prénom] — photo &amp; vidéo de mariage à Montréal. On est un couple marié tous les deux, on ne filme que des mariages.
+Nos mariées nous reparlent toutes du moment de l'essayage. On aimerait le filmer chez vous : un Reel, gratuit, qui est à vous.
+En collab, ça toucherait vos futures mariées et les nôtres. Je vous montre deux exemples ?</pre>
+    </div>
+
+    <div class="copy">
+      <div class="copy-top">
+        <span class="copy-name">4 · Wedding planner</span>
+        <button class="copy-btn" data-copy="m4">Copier</button>
+      </div>
+      <pre class="copy-body" id="m4">Salut [Prénom] — on filme des mariages à Montréal, photo + vidéo, on est mari et femme.
+On croise souvent des planners le jour J, jamais avant, et c'est dommage.
+On aimerait juste prendre un café : comprendre comment vous travaillez, voir si on peut se recommander.
+Vous auriez 30 minutes dans les prochaines semaines ?</pre>
+    </div>
+    <p class="copy-note">Ne demande pas de collab ici. Le café est l'objectif.</p>
+
+    <div class="copy">
+      <div class="copy-top">
+        <span class="copy-name">5 · Fleuriste, MUA, coiffure</span>
+        <button class="copy-btn" data-copy="m5">Copier</button>
+      </div>
+      <pre class="copy-body" id="m5">Salut [Prénom] — on a filmé le mariage de [prénoms] le [date], vous y étiez.
+On a des plans de votre travail qu'on n'utilise pas.
+On vous les monte en Reel, gratuit. En collab si ça vous va.
+Je vous envoie ça ?</pre>
+    </div>
+
+    <div class="copy">
+      <div class="copy-top">
+        <span class="copy-name">6 · Relance — J+5, une seule fois</span>
+        <button class="copy-btn" data-copy="m6">Copier</button>
+      </div>
+      <pre class="copy-body" id="m6">Salut [Prénom], je remonte mon message au cas où il soit passé à la trappe.
+L'offre tient, le montage est déjà prêt de notre côté.
+Bonne journée !</pre>
+    </div>
+    <p class="copy-note">Une relance, pas deux. Sans réponse après celle-là, on passe au suivant.</p>
+  </section>
+
+  <!-- 4 ─────────────────────────────────────────────────────────────── -->
+  <section>
+    <div class="s-head"><span class="s-num">04</span><h2>Les cibles</h2></div>
+    <p class="s-sub">Coche au fur et à mesure. Objectif : 4 collabs publiées en 30 jours.</p>
+
+    <div class="tier">
+      <p class="tier-h">Niveau 0 — tes propres rushs</p>
+      <p class="tier-n">Aucune liste que je peux construire ne vaut la tienne. Chaque salle où tu as déjà filmé est un contact chaud.</p>
+    </div>
+
+    <div class="tier">
+      <p class="tier-h">Niveau 1 — boutiques de robes</p>
+      <p class="tier-n">Le point d'entrée le plus précoce du parcours d'achat.</p>
+      <ul class="targ">
+        <li><input type="checkbox" id="v1"><label for="v1">Château Nadia <span class="handle">@chateau.nadia</span></label><span class="flag">à vérifier</span></li>
+        <li><input type="checkbox" id="v2"><label for="v2">White Montréal <span class="handle">@whitemontreal</span></label><span class="flag">à vérifier</span></li>
+        <li><input type="checkbox" id="v3"><label for="v3">Ma Chérie Bleue <span class="handle">@macheriebleue</span></label><span class="flag">à vérifier</span></li>
+        <li><input type="checkbox" id="v4"><label for="v4">Christianne Brunelle Couture</label><span class="flag">bon décor</span></li>
+        <li><input type="checkbox" id="v5"><label for="v5">Dream It Yourself</label></li>
+        <li><input type="checkbox" id="v6"><label for="v6">1861</label></li>
+        <li><input type="checkbox" id="v7"><label for="v7">Noces Royales</label></li>
+      </ul>
+    </div>
+
+    <div class="tier">
+      <p class="tier-h">Niveau 2 — planners</p>
+      <p class="tier-n">Relevés sur leurs pages Instagram directement. Un café, pas une collab.</p>
+      <ul class="targ">
+        <li><input type="checkbox" id="v8"><label for="v8">Foudamour <span class="handle">@foudamour_mtl</span></label><span class="flag">priorité</span></li>
+        <li><input type="checkbox" id="v9"><label for="v9">Andrea Larocque <span class="handle">@dem_eventplanner</span></label></li>
+        <li><input type="checkbox" id="v10"><label for="v10">Louve Événementiel <span class="handle">@louvevenementiel</span></label></li>
+        <li><input type="checkbox" id="v11"><label for="v11">LOVEPUNCH</label></li>
+        <li><input type="checkbox" id="v12"><label for="v12">Erika co.</label></li>
+      </ul>
+    </div>
+
+    <div class="tier">
+      <p class="tier-h">Niveau 3 — salles</p>
+      <p class="tier-n">Les identifiants sont à chercher — les sources donnaient les lieux, pas les comptes.</p>
+      <ul class="targ">
+        <li><input type="checkbox" id="v13"><label for="v13">Auberge Saint-Gabriel</label><span class="flag">Vieux-Mtl</span></li>
+        <li><input type="checkbox" id="v14"><label for="v14">Espace Wilder</label><span class="flag">brique, urbain</span></li>
+        <li><input type="checkbox" id="v15"><label for="v15">Entrepôts Dominion</label><span class="flag">industriel</span></li>
+        <li><input type="checkbox" id="v16"><label for="v16">InterContinental Montréal</label><span class="flag">lumineux</span></li>
+        <li><input type="checkbox" id="v17"><label for="v17">Château Venise</label></li>
+        <li><input type="checkbox" id="v18"><label for="v18">L'Ambroisie</label></li>
+        <li><input type="checkbox" id="v19"><label for="v19">Parc Jean-Drapeau</label><span class="flag">extérieur</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 5 ─────────────────────────────────────────────────────────────── -->
+  <section>
+    <div class="s-head"><span class="s-num">05</span><h2>Les trois Reels</h2></div>
+    <p class="s-sub">Un par semaine, dans cet ordre. Aucune intro, aucun logo, aucune transition — le premier plan est déjà du contenu.</p>
+
+    <details class="reel" open>
+      <summary><span class="reel-n">R1</span><span class="reel-t">On est mariés</span></summary>
+      <div class="reel-body">
+        <div class="meta"><span><b>Confiance</b></span><span>25-30 s</span><span>Vous deux à l'écran</span></div>
+        <p class="hook">On est mariés. C'est pour ça qu'on filme les mariages autrement.</p>
+        <ul class="shots">
+          <li class="shot"><span class="shot-t">0:00</span><span>
+            <span class="shot-img">Vous deux, plein cadre, près d'une fenêtre. Regard caméra.</span>
+            <span class="shot-say">On est mariés. C'est pour ça qu'on filme les mariages autrement.</span>
+            <span class="shot-scr">On est mariés.</span></span></li>
+          <li class="shot"><span class="shot-t">0:03</span><span>
+            <span class="shot-img">Une mariée en préparation, vraie tension — pas un plan posé.</span>
+            <span class="shot-say">Donc on sait qu'à 14h, la mariée va paniquer pour une raison que personne n'avait prévue.</span></span></li>
+          <li class="shot"><span class="shot-t">0:09</span><span>
+            <span class="shot-img">Gros plan sur les mains du marié quand elle entre.</span>
+            <span class="shot-say">On sait que le marié va faire un truc avec ses mains quand elle va entrer.</span></span></li>
+          <li class="shot"><span class="shot-t">0:13</span><span>
+            <span class="shot-img">Les parents, à cet instant. Le plan que personne ne filme.</span>
+            <span class="shot-say">Et on sait que personne ne regarde les parents à ce moment-là.</span></span></li>
+          <li class="shot"><span class="shot-t">0:18</span><span>
+            <span class="shot-img">Vous deux — ou votre propre mariage si vous avez les images.</span>
+            <span class="shot-say">Nous, on regarde. Parce qu'on y était, de l'autre côté.</span></span></li>
+          <li class="shot"><span class="shot-t">0:24</span><span>
+            <span class="shot-img">Plan large.</span>
+            <span class="shot-say">Si tu te maries à Montréal, envoie-nous ta date. On te dit si on est libres.</span>
+            <span class="shot-scr">Ta date en DM</span></span></li>
+        </ul>
+        <p class="warn"><b>Si vous avez des images de votre mariage, c'est le plan à 0:18.</b> C'est la preuve, elle vaut tout le reste du Reel.</p>
+        <p class="measure">À mesurer — <b>les partages.</b> C'est le Reel qu'une femme envoie à son mec ou à sa mère.</p>
+      </div>
+    </details>
+
+    <details class="reel">
+      <summary><span class="reel-n">R2</span><span class="reel-t">La question à poser</span></summary>
+      <div class="reel-body">
+        <div class="meta"><span><b>Attirer + filtrer</b></span><span>30-35 s</span><span>Face caméra, peu de coupes</span></div>
+        <p class="hook">Avant de signer avec ton photographe de mariage, pose-lui cette question.</p>
+        <ul class="shots">
+          <li class="shot"><span class="shot-t">0:00</span><span>
+            <span class="shot-img">Face caméra, une seule personne, lumière de fenêtre.</span>
+            <span class="shot-say">Avant de signer avec ton photographe de mariage, pose-lui cette question.</span>
+            <span class="shot-scr">Pose cette question</span></span></li>
+          <li class="shot"><span class="shot-t">0:03</span><span>
+            <span class="shot-img">Même plan, léger recadrage.</span>
+            <span class="shot-say">Parce que 9 fois sur 10 personne ne la pose. Et c'est celle qui coûte le plus cher.</span></span></li>
+          <li class="shot"><span class="shot-t">0:08</span><span>
+            <span class="shot-img">Même plan, on ralentit le débit.</span>
+            <span class="shot-say">Le jour de mon mariage, c'est toi qui filmes — ou quelqu'un d'autre ?</span>
+            <span class="shot-scr">« C'est toi qui filmes ? »</span></span></li>
+          <li class="shot"><span class="shot-t">0:14</span><span>
+            <span class="shot-img">Coupe sur des images de mariage.</span>
+            <span class="shot-say">Beaucoup de studios te vendent le portfolio du fondateur et t'envoient un junior le jour J. Ce n'est écrit nulle part, et tu le découvres le matin même.</span></span></li>
+          <li class="shot"><span class="shot-t">0:24</span><span>
+            <span class="shot-img">Retour sur vous deux.</span>
+            <span class="shot-say">Nous, c'est nous. Toujours. On est deux, et on prend un mariage par weekend.</span></span></li>
+          <li class="shot"><span class="shot-t">0:30</span><span>
+            <span class="shot-img">Plan large.</span>
+            <span class="shot-say">Ta date en DM, on te dit si on est libres.</span>
+            <span class="shot-scr">Ta date en DM</span></span></li>
+        </ul>
+        <p class="warn"><b>Attention au ton.</b> C'est un fait du métier, pas une accusation. Aucun nom, aucun air satisfait. Le jour où ça sonne comme une attaque, le Reel se retourne contre vous.</p>
+        <p class="measure">À mesurer — <b>les sauvegardes.</b> Un photographe n'a aucune raison de sauvegarder ça. Une future mariée, si.</p>
+      </div>
+    </details>
+
+    <details class="reel">
+      <summary><span class="reel-n">R3</span><span class="reel-t">Pendant que tu ne regardes pas</span></summary>
+      <div class="reel-body">
+        <div class="meta"><span><b>Attirer</b></span><span>30 s</span><span>Voix off, aucun visage parlant</span></div>
+        <p class="hook">Ce qui se passe à ton mariage pendant que tu ne regardes pas.</p>
+        <ul class="shots">
+          <li class="shot"><span class="shot-t">0:00</span><span>
+            <span class="shot-img">La mariée de dos, ou la salle vide au petit matin.</span>
+            <span class="shot-say">Ce qui se passe à ton mariage pendant que tu ne regardes pas.</span>
+            <span class="shot-scr">Pendant que tu ne regardes pas</span></span></li>
+          <li class="shot"><span class="shot-t">0:03</span><span>
+            <span class="shot-img">Le père, seul dans un couloir, ses papiers à la main.</span>
+            <span class="shot-say">Pendant que tu te prépares, ton père répète son discours tout seul dans le couloir.</span></span></li>
+          <li class="shot"><span class="shot-t">0:09</span><span>
+            <span class="shot-img">La mère, pendant l'entrée — pas la mariée.</span>
+            <span class="shot-say">Pendant que tu marches vers l'autel, ta mère ne te regarde pas. Elle regarde ton futur mari.</span></span></li>
+          <li class="shot"><span class="shot-t">0:16</span><span>
+            <span class="shot-img">Les amis d'enfance, un vrai fou rire.</span>
+            <span class="shot-say">Pendant que vous dansez, tes amis d'enfance se disent des choses qu'ils n'ont pas dites depuis dix ans.</span></span></li>
+          <li class="shot"><span class="shot-t">0:23</span><span>
+            <span class="shot-img">Un de vous deux, caméra à la main, de dos.</span>
+            <span class="shot-say">Toi tu ne verras rien de tout ça. Nous oui.</span></span></li>
+          <li class="shot"><span class="shot-t">0:27</span><span>
+            <span class="shot-img">Plan large du domaine, reconnaissable.</span>
+            <span class="shot-say">[Nom du domaine], Montréal. Ta date en DM.</span>
+            <span class="shot-scr">Ta date en DM</span></span></li>
+        </ul>
+        <p class="warn"><b>Le plan à 0:09 est le cœur du Reel.</b> Sans « la mère qui regarde le marié », cherche l'équivalent : quelqu'un qui regarde ailleurs que là où tout le monde regarde.</p>
+        <p class="measure">À mesurer — <b>partages et watch time complet.</b> Chaque phrase commence par « pendant que tu » : elle est le sujet, pas ton travail.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- 6 ─────────────────────────────────────────────────────────────── -->
+  <section>
+    <div class="s-head"><span class="s-num">06</span><h2>Ce qu'on mesure à J+30</h2></div>
+    <p class="s-sub">On arrête de regarder les abonnés, les J'aime et le taux d'engagement global.</p>
+
+    <div class="kpi">
+      <div class="kpi-row hero">
+        <span class="kpi-k">DMs avec une date de mariage</span>
+        <span class="kpi-v">la seule qui décide</span>
+      </div>
+      <div class="kpi-row">
+        <span class="kpi-k">Vues non-abonnés par Reel</span>
+        <span class="kpi-v">&gt; 60 %</span>
+      </div>
+      <div class="kpi-row">
+        <span class="kpi-k">Part de Montréal dans les vues</span>
+        <span class="kpi-v">en hausse / semaine</span>
+      </div>
+      <div class="kpi-row">
+        <span class="kpi-k">Montréal dans les abonnés</span>
+        <span class="kpi-v">5,1 % → 7 %</span>
+      </div>
+      <div class="kpi-row">
+        <span class="kpi-k">Collabs publiées</span>
+        <span class="kpi-v">4</span>
+      </div>
+    </div>
+
+    <p class="stop"><b>Ton nombre d'abonnés peut stagner ou baisser.</b> Ce n'est pas un échec — c'est le signe que l'audience se corrige.</p>
+  </section>
+
+  <footer>
+    <p>Ta progression est gardée sur cet appareil seulement. Si vous ouvrez la page à deux, chacun a la sienne.</p>
+    <p>Identifiants marqués « à vérifier » : issus de résumés de recherche, pas d'une page consultée. Dix secondes chacun avant d'envoyer.</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var KEY = "fog-relance-v1";
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('input[type="checkbox"]'));
+  var tasks = Array.prototype.slice.call(document.querySelectorAll('#checklist input[type="checkbox"]'));
+  var fill  = document.getElementById("fill");
+  var count = document.getElementById("count");
+
+  function read(){
+    try { return JSON.parse(localStorage.getItem(KEY) || "{}") || {}; }
+    catch(e){ return {}; }
+  }
+  function write(state){
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){ /* mode privé : la page marche quand même */ }
+  }
+
+  function refresh(){
+    var done = tasks.filter(function(b){ return b.checked; }).length;
+    count.textContent = done + " / " + tasks.length;
+    fill.style.width = (tasks.length ? (done / tasks.length) * 100 : 0) + "%";
+  }
+
+  var saved = read();
+  boxes.forEach(function(b){
+    if (saved[b.id]) b.checked = true;
+    b.addEventListener("change", function(){
+      var s = read();
+      if (b.checked) s[b.id] = 1; else delete s[b.id];
+      write(s);
+      refresh();
+    });
+  });
+  refresh();
+
+  // ── Copier ────────────────────────────────────────────────────────────
+  function fallbackCopy(text){
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.top = "-1000px";
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch(e){ ok = false; }
+    document.body.removeChild(ta);
+    return ok;
+  }
+
+  document.querySelectorAll(".copy-btn").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var src = document.getElementById(btn.getAttribute("data-copy"));
+      if (!src) return;
+      var text = src.textContent;
+      var label = btn.textContent;
+
+      function done(ok){
+        btn.textContent = ok ? "Copié" : "Sélectionne";
+        if (ok) btn.classList.add("ok");
+        setTimeout(function(){ btn.textContent = label; btn.classList.remove("ok"); }, 1600);
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function(){ done(true); },
+                                                 function(){ done(fallbackCopy(text)); });
+      } else {
+        done(fallbackCopy(text));
+      }
+    });
+  });
+})();
+</script>
