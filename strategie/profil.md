@@ -75,10 +75,14 @@ c'est le seul élément qu'on emprunte directement à `/Life/ /Work/` d'Amalfi.
 |---|---|---|
 | `/Eux/` | Avis clients, captures de messages, extraits vidéo de couples qui parlent de vous | créer de la confiance |
 | `/Nous/` | Qui vous êtes tous les deux, votre propre mariage, votre façon de travailler | différenciation |
-| `/Comment/` | Le déroulé d'une prestation, les délais, les tarifs de départ | convertir + filtrer |
+| `/Infos/` | Le déroulé d'une prestation, les délais, les tarifs de départ | convertir + filtrer |
 
 Supprimés : `OUR WORK` (doublon avec la grille), `ABOUT` (fusionné dans `/Nous/`),
-`FAQ` (fusionné dans `/Comment/`), `Nouveau`.
+`FAQ` (fusionné dans `/Infos/`), `Nouveau`.
+
+Les trois couvertures sont fabriquées : `assets/highlights/`. Mot court obligatoire —
+« Comment » forçait un corps de police deux fois plus petit et lisait faible à la
+taille réelle d'une bulle.
 
 **Une seule langue.** Bio en français → stories à la une en français. Le mélange
 FR/EN sur le même écran est le détail qui casse le signal premium.
