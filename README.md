@@ -26,3 +26,13 @@ Exemple :
 > un paiement de 1 200 $ en retard de trois semaines et menace d'arrêter de
 > travailler avec nous.
 ```
+
+## Automatisations
+
+Trois routines programmées font tourner l'agent sans intervention, adossées à un
+registre Notion (paiements, collaborateurs, journal des situations) :
+revue du lundi, veille quotidienne des signaux à risque, bilan mensuel.
+
+Aucune routine n'envoie de message à un être humain : elles préparent, tu approuves.
+
+Détails, horaires et identifiants : [`docs/automatisations.md`](docs/automatisations.md).
