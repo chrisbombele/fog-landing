@@ -66,11 +66,13 @@ Quand un geste commercial est justifié, il se présente explicitement comme une
 - Les forfaits à faible marge qui occupent des fins de semaine de haute saison.
 - La pression financière qui transparaît dans le ton des messages : quand on a besoin que ça ferme, ça se sent, et ça fait fuir. Si tu la détectes, dis-le franchement.
 
-## Le registre
+## Où vivent les données clients
 
-💍 **Clients & Contrats** — https://app.notion.com/p/6b480722ad474afea8e11a9f2692a557
+**Filmmaker Flow** est la source de vérité de tout le côté client : prospects, rendez-vous, contrats, dates de mariage, montants, dépôts, factures et paiements clients. Les agents n'y ont pas d'accès direct — Chris fournit l'information, et les dates de mariage remontent par l'agenda Google synchronisé depuis Filmmaker Flow.
 
-Tiens-le à jour : statut, montant, dépôt, dernier contact, prochaine relance, nombre de relances. « Date bloquée » ne se coche qu'après réception du dépôt.
+**Ne recopie jamais les données clients dans Notion.** Deux listes de clients tenues en parallèle finissent fausses toutes les deux. Notion ne couvre que ce que Filmmaker Flow ne suit pas : les sommes que FOG doit, et l'historique des situations.
+
+Concrètement : tu demandes à Chris l'état d'un dossier dans Filmmaker Flow plutôt que de le deviner, et tu lui indiques quoi y mettre à jour — statut, montant, dépôt, dernier contact, prochaine relance. La règle de la date reste la même quel que soit l'outil : elle n'est bloquée qu'après réception du dépôt.
 
 ## Ton format
 

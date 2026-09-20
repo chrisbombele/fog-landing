@@ -16,7 +16,22 @@ Sous la page **FOG Production — Quartier général stratégique** :
 | 💵 Paiements & Factures | Une ligne par montant dû. Montant, échéance, date promise, statut, relance reçue. | https://app.notion.com/p/3209665386c9416685f51a134469f6cd |
 | 👥 Collaborateurs & Relations | Tarif convenu, type d'entente, fiabilité, coût de remplacement, état de la relation, avertissements. | https://app.notion.com/p/670aac9a32874c98b41d3f9d7922c393 |
 | ⚖️ Journal des situations | Chaque conflit, décision, précédent créé, niveau de risque, preuves conservées. | https://app.notion.com/p/f2e960a766f2489199acd7d8130e423a |
-| 💍 Clients & Contrats | Pipeline et comptes à recevoir : du premier rendez-vous jusqu'au solde encaissé. | https://app.notion.com/p/6b480722ad474afea8e11a9f2692a557 |
+
+### Ce qui n'est PAS dans Notion
+
+**Filmmaker Flow** (CRM) est la source de vérité de tout le côté client : prospects,
+contrats, dates de mariage, montants, dépôts, factures et paiements clients. Notion ne
+duplique rien de tout ça. Le partage des rôles :
+
+| Système | Ce qu'il couvre |
+| --- | --- |
+| Filmmaker Flow | L'argent qui rentre. Clients de A à Z. |
+| Notion | L'argent qui sort. Sous-traitants, fournisseurs, sommes dues, journal des situations. |
+| L'agenda Google | Le pont : les dates de mariage synchronisées depuis Filmmaker Flow. |
+
+Une somme que FOG doit à un *client* — un remboursement, un trop-perçu — va dans
+💵 Paiements & Factures, pas dans le CRM : Filmmaker Flow suit ce que les clients versent
+à FOG, pas l'inverse.
 
 Les trois bases sont liées : un paiement pointe vers un collaborateur, une
 situation aussi. C'est ce qui permet à l'agent de voir, en une requête, qu'un

@@ -48,7 +48,7 @@ Tout ce qui touche à **l'argent** — tarif, facture, paiement, retard de paiem
 
 - 👥 **Collaborateurs & Relations** — https://app.notion.com/p/670aac9a32874c98b41d3f9d7922c393
 - 💵 **Paiements & Factures** — https://app.notion.com/p/3209665386c9416685f51a134469f6cd (heures travaillées, événement, date)
-- 💍 **Clients & Contrats** — https://app.notion.com/p/6b480722ad474afea8e11a9f2692a557 (dates de mariage)
+- **Filmmaker Flow** — les dates de mariage, les contrats et les clients. Source de vérité, non dupliquée dans Notion. Les dates remontent par l'agenda Google synchronisé depuis Filmmaker Flow.
 
 ## Ton format
 

@@ -80,11 +80,16 @@ Pour une question simple, réponds simplement. N'impose pas les huit sections à
 
 ## Le registre Notion
 
-Source de vérité commune à toute l'équipe, sous « FOG Production — Quartier général stratégique » :
+Deux systèmes, deux rôles, aucun doublon.
+
+**Filmmaker Flow** est la source de vérité de tout le côté client : prospects, rendez-vous, contrats, dates de mariage, montants, dépôts, factures et paiements clients. Les agents n'y ont pas d'accès direct — Chris fournit l'information, et les dates de mariage remontent par l'agenda Google synchronisé depuis Filmmaker Flow.
+
+**Ne recopie jamais les données clients dans Notion.** Deux listes de clients tenues en parallèle finissent fausses toutes les deux. Notion ne couvre que ce que Filmmaker Flow ne suit pas : les sommes que FOG doit, et l'historique des situations.
+
+Le registre Notion, sous « FOG Production — Quartier général stratégique », couvre l'argent qui sort et les relations :
 
 - 💵 **Paiements & Factures** — https://app.notion.com/p/3209665386c9416685f51a134469f6cd
 - 👥 **Collaborateurs & Relations** — https://app.notion.com/p/670aac9a32874c98b41d3f9d7922c393
-- 💍 **Clients & Contrats** — https://app.notion.com/p/6b480722ad474afea8e11a9f2692a557
 - ⚖️ **Journal des situations** — https://app.notion.com/p/f2e960a766f2489199acd7d8130e423a
 
 Tu consultes le registre avant de conclure, et tu veilles à ce qu'il soit tenu à jour : toute situation 🟠 ou 🔴 donne lieu à une entrée au Journal, avec le précédent que la décision créerait.
