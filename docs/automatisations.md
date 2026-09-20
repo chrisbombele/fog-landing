@@ -1,6 +1,6 @@
 # Automatisations — FOG Production
 
-Trois routines programmées alimentent l'agent `fog-people-finance-manager`
+Trois routines programmées alimentent l'agent `fog-cfo`
 et un registre Notion qui leur sert de source de vérité.
 
 Horaires exprimés en heure du Québec (`America/Montreal`). Les expressions cron
@@ -16,6 +16,7 @@ Sous la page **FOG Production — Quartier général stratégique** :
 | 💵 Paiements & Factures | Une ligne par montant dû. Montant, échéance, date promise, statut, relance reçue. | https://app.notion.com/p/3209665386c9416685f51a134469f6cd |
 | 👥 Collaborateurs & Relations | Tarif convenu, type d'entente, fiabilité, coût de remplacement, état de la relation, avertissements. | https://app.notion.com/p/670aac9a32874c98b41d3f9d7922c393 |
 | ⚖️ Journal des situations | Chaque conflit, décision, précédent créé, niveau de risque, preuves conservées. | https://app.notion.com/p/f2e960a766f2489199acd7d8130e423a |
+| 💍 Clients & Contrats | Pipeline et comptes à recevoir : du premier rendez-vous jusqu'au solde encaissé. | https://app.notion.com/p/6b480722ad474afea8e11a9f2692a557 |
 
 Les trois bases sont liées : un paiement pointe vers un collaborateur, une
 situation aussi. C'est ce qui permet à l'agent de voir, en une requête, qu'un
@@ -34,16 +35,17 @@ Deux colonnes portent l'essentiel de la valeur :
 
 | Routine | Quand | Cron (UTC) | ID |
 | --- | --- | --- | --- |
-| Revue du lundi : paiements, heures & relations | Lundi 8 h 00 | `0 12 * * 1` | `trig_018c7tNVAvfWw4TgdZQYN8Fn` |
+| Revue du lundi : trésorerie, paiements & relations | Lundi 8 h 00 | `0 12 * * 1` | `trig_018c7tNVAvfWw4TgdZQYN8Fn` |
 | Veille quotidienne des signaux à risque | Lun-ven 8 h 30 | `30 12 * * 1-5` | `trig_01DUE1tLyEmdnCDa6g9PQyEP` |
-| Bilan mensuel relations & paiements | 1er du mois 9 h 00 | `0 13 1 * *` | `trig_01XXJHdFkaq8NrYRGbrDYSGU` |
+| Tableau de bord CFO mensuel | 1er du mois 9 h 00 | `0 13 1 * *` | `trig_01XXJHdFkaq8NrYRGbrDYSGU` |
 
 ### Revue du lundi
 
-Cinq passes : collecte des heures du week-end écoulé, paiements en retard et dus
-cette semaine, relances subies, relations à surveiller, balayage Slack des sept
-derniers jours. Sort un rapport classé par niveau de risque avec un message prêt
-à envoyer pour chaque item. Notification par téléphone et par courriel.
+Six passes : position de trésorerie réelle (pas le solde bancaire), prévisionnel
+30 et 60 jours, collecte des heures du week-end écoulé, paiements dus avec ordre
+de priorité justifié, pipeline et comptes à recevoir, relations et balayage Slack
+des sept derniers jours. Sort un rapport classé par niveau de risque avec un message
+prêt à envoyer pour chaque item. Notification par téléphone et par courriel.
 
 Le lundi matin est choisi parce que les mariages ont lieu le week-end :
 confirmer les heures dans les 48 heures supprime la majorité des disputes
@@ -57,12 +59,18 @@ interne, ton qui monte. Répond `RAS` et se tait quand il n'y a rien — c'est
 volontaire, une veille qui notifie tous les jours finit par être ignorée.
 Notification par téléphone seulement.
 
-### Bilan mensuel
+### Tableau de bord CFO mensuel
 
-Santé des paiements, compteur de relances, dégradations de relations, risque de
-départ des collaborateurs difficiles à remplacer, précédents créés et
-contradictions entre décisions, situations ouvertes depuis plus de 30 jours.
-Écrit une page Notion et résume en dix lignes. Notification par courriel.
+Les 21 lignes du tableau de bord, puis rentabilité par mariage, prévisionnel
+30/60/90 jours et 6/12 mois, allocation recommandée des entrées du mois suivant,
+santé des relations, plan de dettes, volet patrimoine, et les questions à poser
+au CPA Canada–États-Unis. Écrit une page Notion et résume en dix lignes.
+Notification par courriel.
+
+Le volet patrimoine reste explicitement en veille tant que les obligations
+courantes et la réserve d'un mois ne sont pas couvertes. Une ligne dont la donnée
+n'existe pas s'écrit « inconnu — à renseigner », jamais une estimation présentée
+comme un fait.
 
 ## Règle non négociable
 
