@@ -1,169 +1,116 @@
-# Procédure — Remettre les calendriers FOG en ordre
+# Calendriers FOG — ce qui existe déjà, et ce qui manque vraiment
 
-Objectif : que l'agenda devienne une **source de données fiable** — les mariages
-d'un côté, les échéances d'argent de l'autre — au lieu d'un simple déclencheur
-d'automatisation noyé dans la routine personnelle.
-
-Deux parties : ce que Chris fait à la main, puis la consigne à donner à l'agent.
+**Conclusion : ne créer aucun nouveau calendrier.** Une version antérieure de ce
+document en recommandait deux. C'était une erreur, fondée sur l'hypothèse que
+Filmmaker Flow ne poussait rien vers Google. Vérification faite, il pousse.
 
 ---
 
-## PARTIE A — Ce que Chris fait lui-même
+## Ce que Filmmaker Flow fait déjà — vérifié
 
-L'agent ne peut pas faire ces trois étapes : ses outils Google Calendar gèrent les
-**événements**, pas les **agendas**, et il n'a aucun accès à Filmmaker Flow.
+Lecture de l'agenda `cmbombele@gmail.com` le 20 septembre 2026. Tous les
+événements de mariage trouvés portent la même signature : une description
+contenant le téléphone et le courriel du client, et des liens `msgsndr.com`
+de *Reschedule* et *Cancel*. `msgsndr.com` est le domaine de GoHighLevel, la
+plateforme sur laquelle Filmmaker Flow est bâti.
 
-### Étape A1 — Créer deux agendas
-
-Dans Google Agenda, sur `cmbombele@gmail.com` :
-
-*Autres agendas* → **+** → *Créer un agenda*
-
-Créer exactement ces deux-là, avec ces noms :
-
-| Nom exact | Ce qu'il contient |
-| --- | --- |
-| `🎬 FOG — Mariages` | Les vrais tournages, et rien d'autre |
-| `💵 FOG — Argent` | Soldes clients à encaisser, paiements sous-traitants à sortir |
-
-Ne rien créer d'autre. Deux agendas suffisent, et trois deviennent vite ingérables.
-
-### Étape A2 — Rediriger la synchronisation Filmmaker Flow
-
-Dans Filmmaker Flow, section *Integrations* / *Calendar* / *Sync* : la connexion
-Google existe déjà et pointe sur `cmbombele@gmail.com`. Changer l'agenda de
-destination pour **`🎬 FOG — Mariages`** au lieu de l'agenda principal.
-
-Si Filmmaker Flow ne permet pas de choisir l'agenda de destination, le noter et le
-dire à l'agent : on passera par une copie automatique à la place.
-
-### Étape A3 — Tester
-
-Créer un mariage bidon dans Filmmaker Flow, vérifier qu'il apparaît bien dans
-`🎬 FOG — Mariages` et non dans l'agenda principal, puis le supprimer.
-
----
-
-## PARTIE B — La consigne à donner à l'agent
-
-À coller telle quelle une fois la partie A terminée.
-
-```
-Réorganise mes calendriers Google selon la procédure ci-dessous.
-
-CONTEXTE
-- Compte : cmbombele@gmail.com
-- Les mariages sont créés dans Filmmaker Flow (CRM) et poussés vers Google Agenda.
-- Jusqu'ici tout atterrissait dans l'agenda principal, mélangé à environ douze
-  événements récurrents de routine par jour. C'est ce qu'on corrige.
-- Deux agendas viennent d'être créés : « 🎬 FOG — Mariages » et « 💵 FOG — Argent ».
-
-RÈGLE ABSOLUE
-Tu ne supprimes AUCUN événement sans me l'avoir listé et sans que j'aie dit oui.
-Tu crées d'abord, tu me montres, je confirme, et seulement ensuite tu nettoies.
-
-ÉTAPE 1 — INVENTAIRE
-Liste les événements NON RÉCURRENTS de l'agenda principal, du 1er janvier 2026 au
-31 décembre 2027. Ignore tout ce qui a un recurringEventId : c'est ma routine
-personnelle, on n'y touche jamais.
-
-Classe chaque événement en trois colonnes :
-  A. VRAI MARIAGE — un tournage réel
-  B. RENDEZ-VOUS — consultation, appel de découverte. Signe distinctif : un lien
-     Zoom ou msgsndr dans la description, et une durée d'une heure ou moins.
-  C. PERSONNEL — hockey, rendez-vous administratifs, etc. On n'y touche pas.
-
-Ne te fie PAS aux heures indiquées : elles ne sont pas fiables, l'événement servait
-de déclencheur, pas d'horaire. Fie-toi au titre et à la présence d'un lien de
-réservation. Présente-moi le tableau et demande-moi de corriger le classement
-avant d'aller plus loin.
-
-ÉTAPE 2 — RECRÉER LES MARIAGES AU BON ENDROIT
-Pour chaque événement confirmé comme VRAI MARIAGE, crée-le dans
-« 🎬 FOG — Mariages » avec ce format :
-
-  Titre : 🎬 [Nom du client] — Mariage
-  Date : la vraie date
-  Heure : celle que je te donne. Si je ne la connais pas encore, mets l'événement
-          sur la journée entière et note « heure à confirmer » dans la description.
-  Description : le bloc structuré ci-dessous, rempli avec ce que je te fournis.
-
-  Client :
-  Forfait :
-  Modèle de paiement : 100 % à la signature | 50 % réservation + 50 % avant
-  Montant reçu :
-  Solde :
-  Solde dû le :
-  Équipe assignée :
-  Coût sous-traitants :
-  Contact client :
-
-Ce bloc est ce qui transforme l'agenda en base de données. Garde exactement ces
-libellés, une ligne chacun : c'est ce qui me permet de tout relire ensuite.
-
-ÉTAPE 3 — CRÉER LES ÉCHÉANCES D'ARGENT
-Dans « 💵 FOG — Argent », crée un événement sur la journée entière pour chaque
-somme attendue ou due. C'est l'étape la plus importante de toute la procédure :
-c'est le trou par lequel l'argent s'échappe.
-
-  Pour un solde client en 50/50 :
-    Titre : 💵 [Client] — Solde X $ à encaisser
-    Date  : un mois avant le mariage (politique FOG)
-    Rappel : 7 jours avant, et le jour même
-
-  Pour un paiement à un sous-traitant :
-    Titre : 💵 [Sous-traitant] — Payer X $
-    Date  : la date d'échéance du contrat
-    Rappel : 3 jours avant
-
-  Pour un remboursement dû à un client :
-    Titre : 💵 [Client] — Rembourser X $
-    Date  : la date engagée
-
-Si un solde est déjà en retard, crée quand même l'événement à sa date d'origine et
-signale-le-moi en rouge dans ton rapport.
-
-ÉTAPE 4 — NETTOYER
-Seulement après mon accord explicite : supprime de l'agenda principal les
-événements que tu as recréés ailleurs. Rien d'autre. Tu ne touches jamais aux
-événements récurrents ni au personnel.
-
-ÉTAPE 5 — VÉRIFIER
-Relis les trois agendas et confirme-moi :
-- combien de mariages dans « 🎬 FOG — Mariages »
-- combien d'échéances dans « 💵 FOG — Argent », et lesquelles sont en retard
-- que l'agenda principal ne contient plus aucun mariage
-- le total d'argent à encaisser et le total à décaisser sur les 60 prochains jours
-
-Termine par un prévisionnel simple, semaine par semaine, sur 60 jours : ce qui
-rentre, ce qui sort, et les semaines où le solde passe sous zéro.
-```
-
----
-
-## PARTIE C — La nouvelle habitude, à chaque signature
-
-Ce qui remplace le geste actuel. À faire une fois que la partie A et la partie B
-sont terminées.
-
-À chaque contrat signé, trois entrées au lieu d'une :
-
-| Agenda | Événement | Quand |
+| Événement | Date | Contact client présent |
 | --- | --- | --- |
-| 🎬 FOG — Mariages | `🎬 [Client] — Mariage` | Le jour du mariage |
-| 💵 FOG — Argent | `💵 [Client] — Solde X $ à encaisser` | Un mois avant (si 50/50) |
-| 💵 FOG — Argent | `💵 [Sous-traitant] — Payer X $` | À l'échéance du contrat |
+| Howardine Metellus's Wedding | 12 sept. 2026 | oui |
+| LB Behtani | 1er oct. 2026 | oui |
+| Wedding Hélène | 3 oct. 2026 | oui |
+| Anne Truong's Wedding | 10 oct. 2026 | oui |
+| Lydia Behtani's Wedding | 11 oct. 2026 | oui |
+| Kenny Lepage & Marianne Gauthier-Groulx's Wedding | 17 oct. 2026 | oui |
+| Wedding Valérie | 17 oct. 2026 | oui |
 
-Et la règle qui protège tout le reste : **le jour où le client paie, la part des
-sous-traitants sort du compte courant.** L'événement « Payer X $ » sert alors de
-simple rappel d'exécution, pas de mauvaise surprise.
+**La synchronisation fonctionne.** Créer un agenda `🎬 FOG — Mariages` en parallèle
+reviendrait à tenir deux listes de mariages — exactement l'erreur qu'on s'est
+interdite pour les clients.
 
-### Mieux : supprimer l'étape manuelle
+Filmmaker Flow possède aussi ses deux calendriers internes **Booked Weddings
+(deposit)** et **Booked Weddings (paid in full)**. Cette distinction est plus
+précieuse qu'elle en a l'air : voir plus bas.
 
-L'entrée au calendrier faite à la main est un point de rupture — le jour où un
-contrat se signe pendant un tournage, l'automatisation ne part jamais.
+---
 
-Si Filmmaker Flow permet de déclencher sur « contrat signé » ou « paiement reçu »
-plutôt que sur la création d'un événement d'agenda, il faut basculer là-dessus.
-C'est la seule correction structurelle de cette procédure ; le reste est du
-rangement.
+## Le seul vrai manque
+
+Filmmaker Flow suit l'argent que les clients versent à FOG. Il ne suit **pas** :
+
+- ce que FOG doit aux sous-traitants ;
+- ce que FOG doit rembourser à un client ;
+- l'historique des situations et des décisions.
+
+C'est le rôle de Notion, déjà en place. Rien à ajouter côté calendrier.
+
+---
+
+## Ce qui reste à faire, par ordre d'utilité
+
+### 1. Exploiter « Booked Weddings (deposit) » — c'est là qu'est l'argent
+
+Le découpage *deposit* contre *paid in full* est déjà une liste de comptes à
+recevoir. Tout mariage encore dans **deposit** est un client dont le solde de 50 %
+n'est pas rentré.
+
+Selon la politique FOG — solde complet un mois avant l'événement — les soldes
+suivants sont dus ou en retard :
+
+| Mariage | Solde dû le | Au 21 septembre |
+| --- | --- | --- |
+| Anne Truong — 10 oct. | 10 septembre | 11 jours de retard |
+| Lydia Behtani — 11 oct. | 11 septembre | 10 jours de retard |
+| Kenny & Marianne — 17 oct. | 17 septembre | 4 jours de retard |
+
+**Action : ouvrir le calendrier deposit et regarder lesquels de ces trois s'y
+trouvent encore.** Chacun est un montant à encaisser immédiatement. C'est la
+piste de trésorerie la plus rapide disponible.
+
+### 2. Vérifier si Filmmaker Flow peut relancer le solde automatiquement
+
+Puisqu'il connaît le montant, l'échéance et le statut du paiement, il devrait
+pouvoir envoyer un rappel de solde un mois avant l'événement. Si cette
+automatisation existe, l'activer règle le problème définitivement et sans ajouter
+d'outil. Si elle n'existe pas, c'est la revue du lundi qui prend le relais.
+
+### 3. Optionnel — séparer les mariages de la routine personnelle
+
+Purement cosmétique. Les mariages arrivent dans l'agenda principal, mêlés à une
+douzaine d'événements récurrents quotidiens (Réveil 5h00, Bible, Deep Work, Gym,
+Coucher). Ça n'empêche personne de travailler : les événements FOG se
+reconnaissent à coup sûr — ils ne sont pas récurrents et contiennent un lien
+`msgsndr`. C'est d'ailleurs ainsi qu'ils ont été retrouvés.
+
+Si le confort de lecture le justifie, la bonne façon de faire est de **changer
+l'agenda de destination dans les réglages du widget de réservation**, pas de créer
+un agenda parallèle qu'il faudrait alimenter à la main.
+
+---
+
+## Comment les agents lisent les mariages
+
+Sans rien changer, et de façon fiable :
+
+1. Lire les événements de `cmbombele@gmail.com`.
+2. Écarter tout ce qui a un `recurringEventId` — c'est la routine personnelle.
+3. Garder ce dont la description contient `msgsndr` — ce sont les dossiers clients.
+4. Distinguer un tournage d'une consultation : un vrai mariage dure 6 heures ou
+   plus et n'a pas de lien Zoom ; une consultation dure une heure ou moins et en a
+   un. En cas de doute, demander à Chris plutôt que supposer.
+
+**Les heures affichées ne sont pas toujours fiables** : l'événement a longtemps
+servi de déclencheur d'automatisation plutôt que d'horaire réel. Confirmer auprès
+de Chris avant de convoquer une équipe sur la foi d'une heure lue au calendrier.
+
+---
+
+## La règle qui protège la trésorerie
+
+Indépendante de tout outil, et c'est celle qui compte le plus :
+
+**Le jour où un client paie, la part des sous-traitants sort du compte courant.**
+
+Le décalage entre l'encaissement client — un mois avant l'événement — et le
+paiement des sous-traitants — trente jours après — est un avantage de trésorerie
+de près de deux mois. Un avantage qu'on dépense devient une dette.
